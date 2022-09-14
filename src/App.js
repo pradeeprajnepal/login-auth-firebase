@@ -11,6 +11,8 @@ import {AuthProvider} from './AuthContext'
 import {auth} from './firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 
+import PrivateRoute from './PrivateRoute';
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [timeActive,setTimeActive]= useState(false);
@@ -26,7 +28,7 @@ function App() {
     <Router>
       <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
       <Switch>
-        <Route exact path="/" component={Profile} />
+        <PrivateRoute exact path="/" component={Profile} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path='/verify-email' component={VerifyEmail} /> 
